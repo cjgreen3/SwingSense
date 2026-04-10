@@ -333,9 +333,12 @@ class SwingApp:
             return
 
         import os
+        import sys
         from datetime import datetime
 
-        swings_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'Swings')
+        base_dir = os.path.dirname(sys.executable) if getattr(sys, 'frozen', False) \
+                   else os.path.dirname(os.path.abspath(__file__))
+        swings_dir = os.path.join(base_dir, 'Swings')
         os.makedirs(swings_dir, exist_ok=True)
 
         dt = datetime.now()
